@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import ChatButton from './components/ChatButton';
+import ChatBox from './components/ChatBox';
 import './App.css';
 
 function App() {
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  const toggleChat = () => {
+    setIsChatOpen(!isChatOpen);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <img src="/groupon.svg" alt="Groupon logo" />
+        <p>Welcome to Groupon case study!</p>
       </header>
+      {!isChatOpen && <ChatButton onClick={toggleChat} />}
+      {isChatOpen && <ChatBox onClose={toggleChat} />}
     </div>
   );
 }
